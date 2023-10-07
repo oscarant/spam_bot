@@ -4,8 +4,24 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pyautogui = "*"
+keyboard = "*"
+black = "*"
+ruff = "*"
+mypy = "*"
+pre-commit = "*"
+pytest = "*"
+pipenv-tools = "*"
+types-keyboard = "*"
+types-pyautogui = "*"
 
 [dev-packages]
+black = "*"
+ruff = "*"
+mypy = "*"
+pre-commit = "*"
+pytest = "*"
+pipenv-tools = "*"
 
 [requires]
 python_version = "3.11"
