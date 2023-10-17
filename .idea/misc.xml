@@ -3,7 +3,7 @@
   <component name="Black">
     <option name="enabledOnReformat" value="true" />
     <option name="enabledOnSave" value="true" />
-    <option name="sdkUUID" value="ebb3a558-f5e0-4f90-911d-ee94fa61834f" />
+    <option name="sdkName" value="Python 3.11 (spam_bot-1CbkW517)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Pipenv (spam-bot)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (spam_bot-1CbkW517)" project-jdk-type="Python SDK" />
 </project>

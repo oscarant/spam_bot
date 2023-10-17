@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 pyautogui = "*"
-keyboard = "*"
 black = "*"
 ruff = "*"
 mypy = "*"
@@ -14,6 +13,10 @@ pytest = "*"
 pipenv-tools = "*"
 types-keyboard = "*"
 types-pyautogui = "*"
+pyobjc-core = "*"
+pyobjc = "*"
+pynput = "*"
+types-pynput = "*"
 
 [dev-packages]
 black = "*"
