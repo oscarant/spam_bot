@@ -22,6 +22,7 @@ class NoAFK:
     def start(self: Self) -> None:
         """Run the anti-AFK loop until time elapses or ESC is pressed."""
         start_time = time.time()
+        total_seconds = self._from_minutes_to_seconds()
         print(f"Starting anti-afk... Press ESC to stop or wait {self.time_minutes} minutes")
         # move the mouse randomly to avoid AFK
         # Add margins to avoid corners and edges (fail-safe zones)
@@ -30,7 +31,11 @@ class NoAFK:
         stop_hotkey = keyboard.add_hotkey("esc", self.stop_event.set)
         try:
             while not self.stop_event.is_set():
-                if time.time() - start_time >= self._from_minutes_to_seconds():
+                elapsed = time.time() - start_time
+                remaining = max(0, int(total_seconds - elapsed))
+                remaining_str = self._format_remaining_time(remaining)
+                print(f"\rTime remaining: {remaining_str}", end="", flush=True)
+                if elapsed >= total_seconds:
                     break
 
                 x = randint(margin, self.screen_width - margin)  # noqa: S311
@@ -52,6 +57,7 @@ class NoAFK:
         finally:
             keyboard.remove_hotkey(stop_hotkey)
 
+        print()  # move to next line after the carriage-return prints
         if self.stop_event.is_set():
             print("\nRun cancelled by user.")
         else:
@@ -63,6 +69,12 @@ class NoAFK:
     def _wait_or_stop(self: Self, duration: float) -> bool:
         """Sleep with minimal CPU while honoring stop requests."""
         return self.stop_event.wait(duration)
+
+    def _format_remaining_time(self: Self, remaining_seconds: int) -> str:
+        """Return remaining time formatted as HH:MM:SS."""
+        hours, remainder = divmod(remaining_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
 
 if __name__ == "__main__":
